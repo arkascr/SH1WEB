@@ -1,0 +1,25 @@
+Base de datos: `biblioteca`
+CREATE TABLE IF NOT EXISTS `t_categorias` (
+  `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
+  `genero` text NOT NULL,
+  PRIMARY KEY (`id_categoria`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+
+INSERT INTO `t_categorias` (`id_categoria`, `genero`) VALUES
+(1, 'ficcion '),
+(2, 'drama'),
+(3, 'terror'),
+(4, 'suspenso'),
+(5, 'fantasia');
+
+
+CREATE TABLE IF NOT EXISTS `t_libros` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` text NOT NULL,
+  `descripcion` text NOT NULL,
+  `precio` int(11) NOT NULL,
+  `imagen` longblob NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+
