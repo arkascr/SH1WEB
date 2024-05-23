@@ -1,28 +1,31 @@
 <?php
 require_once __DIR__ . '../../BACK/config/database.php';
-require_once __DIR__ .'../../BACK/services/UsuariosService.php';
-session_start();
+require_once __DIR__ . '../../BACK/services/UsuariosService.php';
 
-if (isset($_POST['register'])) {
-    $name = $_POST['nombre'];
-    $password = $_POST['pass'];
-    $email = $_POST['correo'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Capturar los datos del formulario
+    $nombre = $_POST['nombre'] ?? '';
+    $correo = $_POST['correo'] ?? '';
+    $contrasena = $_POST['pass'] ?? '';
 
-$usuario = new Usuario();
+    // Validar los datos del formulario (esto es opcional pero recomendable)
+    if (empty($nombre) || empty($correo) || empty($contrasena)) {
+        $error = "Todos los campos son obligatorios.";
+    } else {
+        // Crear una instancia de la clase Usuario
+        $usuario = new Usuario();
 
-$resultadoRegistro = $usuario->registrarUsuario($name, $email, $password);
-if ($resultadoRegistro) {
-    echo "Registro exitoso!";
-    $_SESSION['user'] = [
-        'name' => $name,
-        'email' => $email
-    ];
-    header("Location: /index.php");
-} else {
-    echo "El correo electrónico ya está registrado.";
+        // Registrar el usuario
+        $registroExitoso = $usuario->registrarUsuario($nombre, $correo, $contrasena);
+
+        if ($registroExitoso) {
+            $mensaje = "Usuario registrado exitosamente.";
+        } else {
+            $error = "El correo electrónico ya está registrado.";
+        }
+    }
 }
 
-}
 ?>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en" data-bss-forced-theme="light">
@@ -78,13 +81,18 @@ if ($resultadoRegistro) {
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
                 </div>
                 <?php
-                echo($resultadoRegistro)
+                if (isset($mensaje)) {
+                    echo "<p style='color: green;'>$mensaje</p>";
+                }
 
+                if (isset($error)) {
+                    echo "<p style='color: red;'>$error</p>";
+                }
                 ?>
-                <form method="post">
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     <div class="mb-3">
                         <label class="form-label form-label" for="name">Name</label>
-                        <input class="form-control form-control item" type="text" data-bs-theme="light" id="name" name="nombre" required>
+                        <input class="form-control form-control item" type="text" data-bs-theme="light" id="name" name="nombre" value="<?php echo isset($nombre) ? htmlspecialchars($nombre) : ''; ?>" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label form-label" for="email">Email</label>
