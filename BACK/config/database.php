@@ -16,6 +16,7 @@ class Database {
 			];
 
 			$dbConnection = new PDO($dsn, $dbUser, $dbPass, $options);
+			return $dbConnection;
 			//echo "Connected successfully!";
 		} catch (PDOException $e) {
 			echo "Error: " . $e->getMessage();
