@@ -1,3 +1,30 @@
+<?php
+require_once __DIR__ . '../../BACK/config/database.php';
+require_once __DIR__ . '../../BACK/services/UsuariosService.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['pass'];
+
+    $usuario = new Usuario();
+
+    $loginResult = $usuario->login($email, $password);
+
+    if ($loginResult) {
+        // Almacenar variables de sesión
+        
+
+        // Redirigir al dashboard o página principal
+        header("Location: index.php");
+        exit();
+    } else {
+        // Autenticación fallida, mostrar mensaje de error
+        $error = "Correo o contraseña inválidos";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en" data-bss-forced-theme="light">
 
@@ -32,13 +59,13 @@
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
-                </ul><a class="btn btn-primary shadow" role="button" href="registration.html" style="transform: scale(1);width: 213.278px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-plus-fill" style="font-size: 28px;">
+                </ul><a class="btn btn-primary shadow" role="button" href="registrar.php" style="transform: scale(1);width: 213.278px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-plus-fill" style="font-size: 28px;">
                         <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"></path>
                         <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"></path>
-                    </svg>&nbsp;Registrar</a><a class="btn btn-primary shadow" role="button" href="signup.php" style="width: 226.034px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 28px;">
+                    </svg>&nbsp;Registrar</a><a class="btn btn-primary shadow" role="button" href="login.php" style="width: 226.034px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 28px;">
                         <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
                         <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"></path>
-                    </svg>&nbsp;Iniciar Sesión</a><a class="btn btn-primary shadow" role="button" href="signup.php" style="width: 176.653px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-cart4" style="font-size: 28px;">
+                    </svg>&nbsp;Iniciar Sesión</a><a class="btn btn-primary shadow" role="button" href="login.php" style="width: 176.653px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-cart4" style="font-size: 28px;">
                         <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"></path>
                     </svg>&nbsp;Mi Carrito</a>
             </div>
@@ -51,12 +78,23 @@
                     <h2 class="text-info">Log In</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
                 </div>
-                <form>
-                    <div class="mb-3"><label class="form-label form-label" for="email">Email</label><input class="form-control form-control item" type="email" data-bs-theme="light" id="email"></div>
-                    <div class="mb-3"><label class="form-label form-label" for="password">Password</label><input class="form-control form-control" type="password" data-bs-theme="light" id="password"></div>
+                <?php if (!empty($error)) : ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?= $error ?>
+                    </div>
+                <?php endif; ?>
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <div class="mb-3"><label class="form-label form-label" for="email">Email</label>
+                        <input class="form-control form-control item" type="email" data-bs-theme="light" name="email" id="email" required>
+                    </div>
+                    <div class="mb-3"><label class="form-label form-label" for="password">Password</label>
+                        <input class="form-control form-control" type="password" data-bs-theme="light" name="pass" id="password" required>
+                    </div>
                     <div class="mb-3">
-                        <div class="form-check"><input type="checkbox" class="form-check-input" data-bs-theme="light" id="checkbox"><label class="form-label form-check-label" for="checkbox">Remember me</label></div>
-                    </div><button class="btn btn-primary" type="submit">Log In</button>
+                        <div class="form-check"><input type="checkbox" class="form-check-input" data-bs-theme="light" id="checkbox"><label class="form-label form-check-label" for="checkbox">Remember me</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" name="login" type="submit">Log In</button>
                 </form>
             </div>
         </section>
