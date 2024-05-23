@@ -63,18 +63,60 @@ if (isset($_GET['buscador'])) {
 					<?=generateBreadcrumbs()?>
             <div class="row mx-auto">
                 <div class="col">
-                    <div data-reflow-type="shopping-cart">
+                    <div data-reflow-type="shopping-cart" style="padding-left: 50px"><br>
 						<?php
 	
 	if((count($result) == 0)){
-		echo "No hay libros.";
+		echo "<strong>No hay libros.</strong>";
 	}else if(count($result) == 1){
-		echo "Hay 1 libro encontrado.";
+		echo "<strong><h1>Hay 1 libro encontrado.</h1></strong>";
 	}else{
-		echo count($result). " libros encontrados.";
+		echo "<strong><h2>". count($result). " libros encontrados.</h2></strong>";
 	}
 		?>
-                </div>
+					  <div class="col-md-9">
+						  <div class="products">
+						    <div class="row g-0">
+								<?php
+	
+	if((count($result) == 0)){?>
+						      <div class="col-12 col-md-6 col-lg-4">
+						        <div class="border-light-subtle clean-product-item">
+						          <div class="image"></div>
+						          <div class="product-name"></div>
+						          <div class="about">
+						            <div class="rating"></div>
+						            <div class="">
+						              <h3> </h3>
+										<br><br>
+										<p><br></p>
+					                </div>
+					              </div>
+					            </div>
+					          </div>
+								<?php }else{ 
+									foreach ($result as $libro) {
+									$imagen64 = base64_encode($libro["imagen"]);
+								?>
+								<div class="col-12 col-md-6 col-lg-4">
+						        <div class="border-light-subtle clean-product-item">
+						          <div class="image"><a href="./producto.php?libro=<?=$libro["ID"]?>"><img class="img-fluid d-block mx-auto" src="data:image/jpeg;base64, <?= $imagen64 ?>"</a></div>
+						          <div class="product-name"><a href="./producto.php?libro=<?=$libro["ID"]?>"><?=$libro["titulo"]?></a></div>
+						          <div class="about">
+						            <div class="">
+						              <h3></h3>
+					                </div>
+					              </div>
+					            </div>
+					          </div>
+								<?php
+									}
+								}
+								?>
+						    </div>
+					    </div>
+					  </div>
+                  </div>
             </div>
         </div>
     </section>
