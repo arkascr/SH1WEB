@@ -1,8 +1,8 @@
 <?php 
 require_once('./functions/breadcrumbs.php');
 
-if (isset($_GET['buscardor'])) {
-    $buscar = htmlspecialchars($_GET['buscardor']);
+if (isset($_GET['buscador'])) {
+    $buscar = htmlspecialchars($_GET['buscador']);
 	
 	require_once('../BACK/services/LibrosService.php');
 	

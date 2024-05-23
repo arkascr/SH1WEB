@@ -8,7 +8,7 @@ class Libros {
         $this->dbLibros = Database::connectDB(); // Obtiene la conexión a la base de datos
     }
 
-    public function getLibrosSearch(string $libro): array {
+    public function getLibrosSearch(string $libro){
     // Prepara la consulta SQL con marcadores de posición
     $stmt = $this->dbLibros->prepare("SELECT * FROM `t_libros` WHERE titulo LIKE ? OR descripcion like ?");
 
