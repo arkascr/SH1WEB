@@ -11,7 +11,7 @@ class Usuario {
     public function registrarUsuario($nombre, $correo, $contrasena) {
         
         // Verificar si el correo ya está registrado
-        $stmt = $this->dbEvents->prepare("SELECT id FROM usuarios WHERE correo = :correo");
+        $stmt = $this->dbEvents->prepare("SELECT id FROM usuarios WHERE email = :correo");
         $stmt->bindParam(':correo', $correo);
         $stmt->execute();
         
@@ -23,7 +23,7 @@ class Usuario {
         $hashedPassword = password_hash($contrasena, PASSWORD_DEFAULT);
 
         // Insertar usuario en la base de datos
-        $stmt = $this->dbEvents->prepare("INSERT INTO usuarios (nombre, correo, contrasena) VALUES (:nombre, :correo, :contrasena)");
+        $stmt = $this->dbEvents->prepare("INSERT INTO usuarios (nombre, email, pass) VALUES (:nombre, :correo, :contrasena)");
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':correo', $correo);
         $stmt->bindParam(':contrasena', $hashedPassword);
@@ -34,7 +34,7 @@ class Usuario {
 
     public function login($correo, $contrasena) {
         // Obtener la contraseña almacenada para el correo dado
-        $stmt = $this->dbEvents->prepare("SELECT contrasena FROM usuarios WHERE correo = :correo");
+        $stmt = $this->dbEvents->prepare("SELECT pass FROM usuarios WHERE email = :correo");
         $stmt->bindParam(':correo', $correo);
         $stmt->execute();
 

@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($nombre) || empty($correo) || empty($contrasena)) {
         $error = "Todos los campos son obligatorios.";
     } else {
+
         // Crear una instancia de la clase Usuario
         $usuario = new Usuario();
 
