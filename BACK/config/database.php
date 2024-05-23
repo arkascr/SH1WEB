@@ -5,18 +5,21 @@ class Database {
 	
     public static function connectDB() {
         try {
-            $dbHost = "localhost";
-            $dbName = "username"; // cambiar
-            $dbUser = "root"; // cambiar
-            $dbPass = "pass"; // cambiar
+			$dsn = "mysql:host=localhost;port=3307;dbname=biblioteca;";
+			$dbUser = "root";
+			$dbPass = "";
 
-            $dbConnection = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPass);
-            $dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $dbConnection;
-        } catch (PDOException $e) {
-            // Si ocurre un error durante la conexión, lanzamos una excepción
-            throw new Exception("Error al conectar a la base de datos: " . $e->getMessage());
-        }
+			$options = [
+				PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+				PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+				PDO::ATTR_EMULATE_PREPARES   => false,
+			];
+
+			$dbConnection = new PDO($dsn, $dbUser, $dbPass, $options);
+			//echo "Connected successfully!";
+		} catch (PDOException $e) {
+			echo "Error: " . $e->getMessage();
+		}
     }
     
     public static function close(PDO $connection) {
