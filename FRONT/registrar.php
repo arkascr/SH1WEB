@@ -3,28 +3,39 @@ require_once __DIR__ . '../../BACK/config/database.php';
 require_once __DIR__ . '../../BACK/services/UsuariosService.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Capturar los datos del formulario
-    $nombre = $_POST['nombre'] ?? '';
-    $correo = $_POST['correo'] ?? '';
-    $contrasena = $_POST['pass'] ?? '';
+	
+	$recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+    $recaptcha_secret = '6Ld3O-YpAAAAACNdwck2QXIk0dAkXpjbgT8LVKus';
+    $recaptcha_response = $_POST['g-recaptcha-response'];
 
-    // Validar los datos del formulario (esto es opcional pero recomendable)
-    if (empty($nombre) || empty($correo) || empty($contrasena)) {
-        $error = "Todos los campos son obligatorios.";
-    } else {
+    $response = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+    $responseKeys = json_decode($response, true);
 
-        // Crear una instancia de la clase Usuario
-        $usuario = new Usuario();
+   // if ($responseKeys["success"] && $responseKeys["score"] >= 0.5) {
+		// El usuario pasó el reCAPTCHA. Procesa el formulario.
+		// Capturar los datos del formulario
+		$nombre = $_POST['nombre'] ?? '';
+		$correo = $_POST['correo'] ?? '';
+		$contrasena = $_POST['pass'] ?? '';
 
-        // Registrar el usuario
-        $registroExitoso = $usuario->registrarUsuario($nombre, $correo, $contrasena);
+		// Validar los datos del formulario (esto es opcional pero recomendable)
+		if (empty($nombre) || empty($correo) || empty($contrasena)) {
+			$error = "Todos los campos son obligatorios.";
+		} else {
 
-        if ($registroExitoso) {
-            $mensaje = "Usuario registrado exitosamente.";
-        } else {
-            $error = "El correo electrónico ya está registrado.";
-        }
-    }
+			// Crear una instancia de la clase Usuario
+			$usuario = new Usuario();
+
+			// Registrar el usuario
+			$registroExitoso = $usuario->registrarUsuario($nombre, $correo, $contrasena);
+
+			if ($registroExitoso) {
+				$mensaje = "Usuario registrado exitosamente.";
+			} else {
+				$error = "El correo electrónico ya está registrado.";
+			}
+		}
+//	}
 }
 
 ?>
@@ -47,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="assets/css/css/vanilla-zoom.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min-1.css">
     <link rel="stylesheet" href="assets/css/fonts/simple-line-icons.min.css">
+	<script src="https://www.google.com/recaptcha/api.js?render=6Ld3O-YpAAAAAGgEUgftEHmEYKFmHwAAw58TEVfx"></script>
 </head>
 
 <body>
@@ -88,8 +100,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
                 </div>
                 <?php if (!empty($mensaje)) : ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?= $error ?>
+                    <div class="alert alert-success" role="alert">
+                        <?= $mensaje ?>
                     </div>
                 <?php endif; ?>
                 <?php if (!empty($error)) : ?>
@@ -110,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label class="form-label form-label" for="password">Password</label>
                         <input class="form-control form-control item" type="password" data-bs-theme="light" id="password" name="pass" required>
                     </div>
-
+					<input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
                     <button class="btn btn-primary" type="submit" name="register">Sign Up</button>
                 </form>
             </div>
@@ -166,6 +178,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="assets/js/js/baguetteBox.min.js"></script>
     <script src="assets/js/js/vanilla-zoom.js"></script>
     <script src="assets/js/js/theme.js"></script>
+	<script>
+    grecaptcha.ready(function() {
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            grecaptcha.execute('6Ld3O-YpAAAAAGgEUgftEHmEYKFmHwAAw58TEVfx', {action: 'submit'}).then(function(token) {
+                document.getElementById('g-recaptcha-response').value = token;
+                document.getElementById('myForm').submit();
+            });
+        });
+    });
+</script>
+
 </body>
 
 </html>
