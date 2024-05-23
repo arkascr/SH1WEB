@@ -52,7 +52,7 @@ class EventsService {
 		// Verificar si la consulta fue exitosa
 		if ($stmt === false) {
 			// Manejar el error
-			die("Error en la consulta: " . $this->dbEvents->error);
+			die("Error en la consulta: ");
 		}
 
 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -61,17 +61,5 @@ class EventsService {
 
 		return $result;
 	}
-	
-	public function getAllResultadosByCampos(string $campos, string $ident): array {
-        $stmt = $this->dbEvents->query("SELECT " . $campos . " FROM resultados_$ident");
-		 
-		 Database::close($this->dbResults);
-        return $stmt->fetchAll(PDO::FETCH_NUM);
-    }
 
-    public function getUserById(int $id): ?User {
-        // Implementación para obtener un usuario por ID
-    }
-
-    // Otros métodos para manipular datos de usuarios
 }

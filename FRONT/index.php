@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en" data-bss-forced-theme="light">
+<html data-bs-theme="light" lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Register - Brand</title>
+    <title>Inicio - Books Zone</title>
     <meta name="description" content="Venta de Libros en linea">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i&amp;display=swap">
@@ -19,12 +20,12 @@
     <link rel="stylesheet" href="assets/css/fonts/simple-line-icons.min.css">
 </head>
 
-<body>
+<body style="background: var(--bs-body-bg);">
     <nav class="navbar navbar-expand-md sticky-top navbar-shrink py-3 navbar-light" id="mainNav" style="background: var(--bs-primary-bg-subtle);">
         <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span class="bs-icon-sm bs-icon-circle bs-icon-primary shadow d-flex justify-content-center align-items-center me-2 bs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-shop-window">
                         <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h12V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5m2 .5a.5.5 0 0 1 .5.5V13h8V9.5a.5.5 0 0 1 1 0V13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5"></path>
-                    </svg></span><span>Books Zone</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-2" style="transform: translate(50px) scale(0.70);"><input class="border rounded border-1 shadow-sm focus-ring focus-ring-primary form-control-sm" type="search" placeholder="Buscar libros" required="" style="transform: perspective(0px) translate(-100px) scale(1.50);width: 350px;">
+                    </svg></span><span>Books Zone</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1" style="transform: translate(50px) scale(0.70);"><input class="border rounded border-1 shadow-sm focus-ring focus-ring-primary form-control-sm" type="search" placeholder="Buscar libros" required="" style="transform: perspective(0px) translate(-100px) scale(1.50);width: 350px;">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
@@ -32,33 +33,81 @@
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
-                </ul><a class="btn btn-primary shadow" role="button" href="registration.html" style="transform: scale(1);width: 213.278px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-plus-fill" style="font-size: 28px;">
+                </ul>
+                <a class="btn btn-primary shadow" role="button" href="registrar.php" style="transform: scale(1);width: 213.278px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-plus-fill" style="font-size: 28px;">
                         <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"></path>
                         <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"></path>
-                    </svg>&nbsp;Registrar</a><a class="btn btn-primary shadow" role="button" href="signup.html" style="width: 226.034px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 28px;">
+                    </svg>&nbsp;Registrar</a>
+                    <a class="btn btn-primary shadow" role="button" href="login.php" style="width: 226.034px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 28px;">
                         <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
                         <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"></path>
-                    </svg>&nbsp;Iniciar Sesión</a><a class="btn btn-primary shadow" role="button" href="signup.html" style="width: 176.653px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-cart4" style="font-size: 28px;">
+                    </svg>&nbsp;Iniciar Sesión</a><a class="btn btn-primary shadow" role="button" href="carrito.php" style="width: 176.653px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-cart4" style="font-size: 28px;">
                         <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"></path>
                     </svg>&nbsp;Mi Carrito</a>
             </div>
         </div>
     </nav>
-    <main class="page registration-page">
-        <section class="clean-block clean-form dark">
-            <div class="container">
-                <div class="block-heading">
-                    <h2 class="text-info">Registration</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+    <section style="--bs-body-bg: var(--bs-success);">
+        <div class="container" style="width: 100%;">
+            <nav class="navbar navbar-expand-md bg-body py-3" style="border-color: var(--bs-navbar-active-color);--bs-body-bg: var(--bs-success);background: var(--bs-blue);">
+                <div class="container">
+                    <div class="collapse navbar-collapse" id="navcol-3" style="background: var(--bs-primary-text-emphasis);">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item"><a class="nav-link active" href="#" style="color: var(--bs-white);">Ofertas</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" style="color: var(--bs-white);">Escolares</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" style="color: var(--bs-white);">Infantil</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" style="color: var(--bs-white);">Cocina</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <form>
-                    <div class="mb-3"><label class="form-label form-label" for="name">Name</label><input class="form-control form-control item" type="text" data-bs-theme="light" id="name"></div>
-                    <div class="mb-3"><label class="form-label form-label" for="password">Password</label><input class="form-control form-control item" type="password" data-bs-theme="light" id="password"></div>
-                    <div class="mb-3"><label class="form-label form-label" for="email">Email</label><input class="form-control form-control item" type="email" data-bs-theme="light" id="email"></div><button class="btn btn-primary" type="submit">Sign Up</button>
-                </form>
+            </nav>
+        </div>
+    </section>
+    <header class="bg-primary-gradient">
+        <div class="carousel slide" data-bs-ride="carousel" id="carousel-2">
+            <div class="carousel-inner">
+                <div class="carousel-item active"><img class="w-100 d-block w-100" alt="Slide Image" src="assets/img/books.jpg"></div>
+                <div class="carousel-item"><img class="w-100 d-block w-100" alt="Slide Image" src="assets/img/home_boxes.jpeg"></div>
+                <div class="carousel-item"><img class="w-100 d-block w-100" alt="Slide Image" src="assets/img/vintage-book-store.jpg"></div>
             </div>
-        </section>
-    </main>
+            <div><a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev"><span></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next"><span></span><span class="visually-hidden">Next</span></a></div>
+            <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-2" data-bs-slide-to="0" class="active"></button> <button type="button" data-bs-target="#carousel-2" data-bs-slide-to="1"></button> <button type="button" data-bs-target="#carousel-2" data-bs-slide-to="2"></button></div>
+        </div>
+    </header>
+    <section>
+        <div class="container py-5">
+            <div class="mx-auto" style="max-width: 900px;">
+                <div class="row row-cols-1 row-cols-md-2 d-flex justify-content-center">
+                    <div class="col-xxl-4 mb-4" style="width: 300px;">
+                        <div class="card bg-primary-subtle">
+                            <div class="card-body text-center px-4 py-5 px-md-5">
+                                <p class="fw-bold text-primary card-text mb-2">Fully Managed</p>
+                                <h5 class="fw-bold card-title mb-3">Lorem ipsum dolor sit&nbsp;nullam et quis ad cras porttitor</h5><button class="btn btn-primary btn-sm" type="button">Learn more</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 mb-4" style="width: 300px;">
+                        <div class="card bg-secondary-subtle">
+                            <div class="card-body text-center px-4 py-5 px-md-5">
+                                <p class="fw-bold text-secondary card-text mb-2">Fully Managed</p>
+                                <h5 class="fw-bold card-title mb-3">Lorem ipsum dolor sit&nbsp;nullam et quis ad cras porttitor</h5><button class="btn btn-secondary btn-sm" type="button">Learn more</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 mb-4" style="width: 300px;">
+                        <div class="card bg-info-subtle">
+                            <div class="card-body text-center px-4 py-5 px-md-5">
+                                <p class="fw-bold text-info card-text mb-2">Fully Managed</p>
+                                <h5 class="fw-bold card-title mb-3">Lorem ipsum dolor sit&nbsp;nullam et quis ad cras porttitor</h5><button class="btn btn-info btn-sm" type="button">Learn more</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <footer class="bg-primary-gradient" style="background: #212529;color: var(--bs-white);">
         <div class="container py-4 py-lg-5">
             <div class="row justify-content-center">
@@ -102,6 +151,10 @@
             </div>
         </div>
     </footer>
+    <div>
+        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+        <div class="elfsight-app-dcf5070e-9310-4dfd-8b34-957d71456614" data-elfsight-app-lazy></div>
+    </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/bold-and-bright.js"></script>

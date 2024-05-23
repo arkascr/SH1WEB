@@ -39,7 +39,7 @@ class ApiController {
         // Devolver la respuesta como JSON
         header('Content-Type: application/json');
 		header('Access-Control-Allow-Origin: *');
-        echo json_encode(array("result"=> $result));
+        echo json_encode(array("result"=> $users));
     }
 
     // Otros métodos para manejar las operaciones CRUD
