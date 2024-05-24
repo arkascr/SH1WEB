@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
@@ -26,10 +30,10 @@
                         <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h12V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5m2 .5a.5.5 0 0 1 .5.5V13h8V9.5a.5.5 0 0 1 1 0V13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5"></path>
                     </svg></span><span>Books Zone</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1" style="transform: translate(50px) scale(0.70);">
-				<form action="buscador.php" method="get" class="position-relative"  style="width: 450px">
-        <input class="form-control border rounded border-1 shadow-sm focus-ring focus-ring-primary form-control-lg" type="search" placeholder="Buscar libros" required name="buscador"  style="width: 450px !important;">
-        <button class="btn btn-primary position-absolute" style="right: 0; top: 0; bottom: 0;">Buscar</button>
-    </form>
+                <form action="buscador.php" method="get" class="position-relative" style="width: 450px">
+                    <input class="form-control border rounded border-1 shadow-sm focus-ring focus-ring-primary form-control-lg" type="search" placeholder="Buscar libros" required name="buscador" style="width: 450px !important;">
+                    <button class="btn btn-primary position-absolute" style="right: 0; top: 0; bottom: 0;">Buscar</button>
+                </form>
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
@@ -39,16 +43,35 @@
                     <li class="nav-item"></li>
                 </ul>
                 <a class="btn btn-primary shadow" role="button" href="registrar.php" style="transform: scale(1);width: 213.278px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-plus-fill" style="font-size: 28px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-plus-fill" style="font-size: 28px;">
                         <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"></path>
                         <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"></path>
                     </svg>&nbsp;Registrar</a>
-                    <a class="btn btn-primary shadow" role="button" href="login.php" style="width: 226.034px;">
+                <!-- <a class="btn btn-primary shadow" role="button" href="login.php" style="width: 226.034px;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 28px;">
-                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
                         <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"></path>
-                    </svg>&nbsp;Iniciar Sesión</a>
+                    </svg>&nbsp;Iniciar Sesión</a> -->
+                    <?php
+                    if (isset($_SESSION['usuario'])) {
+                        echo '<a class="btn btn-primary shadow" role="button" href="logout.php" style="width: 226.034px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 28px;">
+                                    <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"></path>
+                                </svg>&nbsp;Cerrar Sesión</a>';
+                    } else {
+                        echo '<a class="btn btn-primary shadow" role="button" href="login.php" style="width: 226.034px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 28px;">
+                        <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"></path>
+                    </svg>&nbsp;Iniciar Sesión</a>';
+                    }
+                    ?>
+
             </div>
+            <?php
+            if (isset($_SESSION['usuario'])) {
+                echo '<h5 style="color: #888686; ">' . htmlspecialchars($_SESSION['usuario']) . '</h5>';
+
+            }
+            ?>
         </div>
     </nav>
     <section style="--bs-body-bg: var(--bs-success);">
@@ -133,7 +156,10 @@
                     <div class="fw-bold d-flex align-items-center mb-2"><span class="bs-icon-sm bs-icon-circle bs-icon-primary d-flex justify-content-center align-items-center bs-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-shop-window">
                                 <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h12V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5m2 .5a.5.5 0 0 1 .5.5V13h8V9.5a.5.5 0 0 1 1 0V13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5"></path>
                             </svg></span><span>Books Zone</span></div>
-                    <p style="color: var(--bs-white);"><div id="mysitemapgenerator_loadcorsdata" data-token="75e3a3362c516bae1bf8712e1d68f0b2" data-domain="www.mysitemapgenerator.com"></div><script src="https://cdn.mysitemapgenerator.com/api/embedmap.m.js"></script></p>
+                    <p style="color: var(--bs-white);">
+                    <div id="mysitemapgenerator_loadcorsdata" data-token="75e3a3362c516bae1bf8712e1d68f0b2" data-domain="www.mysitemapgenerator.com"></div>
+                    <script src="https://cdn.mysitemapgenerator.com/api/embedmap.m.js"></script>
+                    </p>
                 </div>
             </div>
             <hr>
@@ -164,6 +190,6 @@
     <script src="assets/js/js/baguetteBox.min.js"></script>
     <script src="assets/js/js/vanilla-zoom.js"></script>
     <script src="assets/js/js/theme.js"></script>
-</body>
+    </>
 
 </html>

@@ -32,7 +32,7 @@ class Usuario {
         return $result;
     }
 
-    public function login($correo, $contrasena) {
+   /*  public function login($correo, $contrasena) {
         // Obtener la contraseña almacenada para el correo dado
         $stmt = $this->dbEvents->prepare("SELECT pass FROM usuarios WHERE email = :correo");
         $stmt->bindParam(':correo', $correo);
@@ -46,9 +46,43 @@ class Usuario {
 
         // Verificar la contraseña
         if (password_verify($contrasena, $hashedPassword)) {
+
             return true; // Contraseña correcta
         } else {
             return false; // Contraseña incorrecta
+        }
+    }
+ */
+public function login($correo, $contrasena) {
+    // Obtener la contraseña almacenada para el correo dado
+    $stmt = $this->dbEvents->prepare("SELECT id, email, pass FROM usuarios WHERE email = :correo");
+    $stmt->bindParam(':correo', $correo);
+    $stmt->execute();
+
+    if ($stmt->rowCount() !== 1) {
+        return false; // Usuario no encontrado
+    }
+
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Verificar la contraseña
+    if (password_verify($contrasena, $usuario['pass'])) {
+        // Contraseña correcta, devolver el correo electrónico del usuario
+        return $usuario['email'];
+    } else {
+        return false; // Contraseña incorrecta
+    }
+}
+ 
+    public function buscarUsuario($correo) {
+        $stmt = $this->dbEvents->prepare("SELECT id FROM usuarios WHERE email = :correo");
+        $stmt->bindParam(':correo', $correo);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            return true; // Usuario encontrado
+        } else {
+            return false; // Usuario no encontrado
         }
     }
 }

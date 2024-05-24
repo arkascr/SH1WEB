@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="container">
                 <div class="block-heading">
                     <h2 class="text-info">Registration</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+                    <h4>Crea tu cuenta y comienza a leer sin parar</h4>
                 </div>
                 <?php if (!empty($mensaje)) : ?>
                     <div class="alert alert-success" role="alert">
@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?= $error ?>
                     </div>
                 <?php endif; ?>
-                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="myForm">
                     <div class="mb-3">
                         <label class="form-label form-label" for="name">Name</label>
                         <input class="form-control form-control item" type="text" data-bs-theme="light" id="name" name="nombre" value="<?php echo isset($nombre) ? htmlspecialchars($nombre) : ''; ?>" required>

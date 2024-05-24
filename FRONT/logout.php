@@ -13,6 +13,6 @@ if (isset($_COOKIE[session_name()])) {
 session_destroy();
 
 // Redirigir a la página de inicio de sesión u otra página deseada
-header("Location: login.php"); // Reemplaza 'login.php' con la ruta de tu página de inicio de sesión
+header("Location: index.php"); // Reemplaza 'login.php' con la ruta de tu página de inicio de sesión
 exit;
 ?>
