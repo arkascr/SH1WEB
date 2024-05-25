@@ -1,3 +1,55 @@
+<?php
+use LDAP\Result;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require '../../vendor/PHPMailer/PHPMailer/src/Exception.php';
+require '../../vendor/PHPMailer/PHPMailer/src/PHPMailer.php';
+require '../../vendor/PHPMailer/PHPMailer/src/SMTP.php';
+
+    // Recoger los datos del formulario
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars($_POST['name']);
+    $subject = htmlspecialchars($_POST['subject']);
+    $email = htmlspecialchars($_POST['email']);
+    $message = htmlspecialchars($_POST['message']);
+
+    $to = "bravo1m12@gmail.com"; 
+    //$correo = $_POST['email'];
+
+    $descripcion = "";
+    
+    $correo_origen = 'bravo1m12@gmail.com';
+    $contrasena_correo = 'idpt lype umqc kvzw ';
+    $para = 'rafaxer123@hotmail.com';
+    $asunto =  'Asunto : ' . $subject . '';
+    $mensaje = 'Nombre : ' . $name . ' Mensaje : ' . $message . '';
+    
+    $mail = new PHPMailer(true);
+    
+    try {
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = $correo_origen;
+        $mail->Password = $contrasena_correo;
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+    
+        $mail->setFrom($correo_origen);
+        $mail->addAddress($para);
+        $mail->Subject = $asunto;
+        $mail->Body = $mensaje;
+    
+        $mail->send();
+    
+
+    } catch (Exception $e) {
+
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en" data-bss-forced-theme="light">
 
@@ -57,7 +109,7 @@
                     <h2 class="text-info">Contact Us</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
                 </div>
-                <form action="enviar.php" method="POST">
+                <form action="contacto.php" method="POST">
                     <div class="mb-3"><label class="form-label form-label" for="name">Name</label><input class="form-control form-control" type="text" data-bs-theme="light" id="name" name="name"></div>
                     <div class="mb-3"><label class="form-label form-label" for="subject">Subject</label><input class="form-control form-control" type="text" data-bs-theme="light" id="subject" name="subject"></div>
                     <div class="mb-3"><label class="form-label form-label" for="email">Email</label><input class="form-control form-control" type="email" data-bs-theme="light" id="email" name="email"></div>
