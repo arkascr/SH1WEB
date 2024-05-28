@@ -75,6 +75,9 @@ if (isset($_GET['libro']) && ctype_digit($_GET['libro'])) {
               <div class="block-content">
                   <div class="product-info">
                         <div class="row">
+							<?php
+            				if (isset($_SESSION['usuario'])) {
+							?>
                             <div class="col-md-6">
                                 <div class="gallery">
                                     <div id="product-preview" class="vanilla-zoom">
@@ -83,6 +86,7 @@ if (isset($_GET['libro']) && ctype_digit($_GET['libro'])) {
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-md-6">
                                 <div class="info">
                                     <h3><?=$result[0]["titulo"]?></h3>
@@ -91,6 +95,16 @@ if (isset($_GET['libro']) && ctype_digit($_GET['libro'])) {
                                     </div>
                                 </div>
                             </div>
+							<?php
+							}else{
+							?>
+							<div class="col-md-12">
+                                <div class="info">
+                                    <h3>Para leer el contenido, tienes que estar registado.</h3>
+                                   <a href="./registrar.php">Registrarme.</a>
+                                </div>
+                            </div>
+							<?php } ?>
                         </div>
                     </div>
                 </div>
