@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Contact Us - Brand</title>
+    <title>Contactanos</title>
     <meta name="description" content="Venta de Libros en linea">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
@@ -121,16 +121,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <section class="clean-block clean-form dark">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Contact Us</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+                    <h2 class="text-info">CONTACTANOS</h2>
+                    <p>llena los siguientes datos solicitados en el formulario y envianos un email</p>
                 </div>
                 <form action="contacto.php" method="POST">
-                    <div class="mb-3"><label class="form-label form-label" for="name">Name</label><input class="form-control form-control" type="text" data-bs-theme="light" id="name" name="name"></div>
-                    <div class="mb-3"><label class="form-label form-label" for="subject">Subject</label><input class="form-control form-control" type="text" data-bs-theme="light" id="subject" name="subject"></div>
+                    <div class="mb-3"><label class="form-label form-label" for="name">Nombre</label><input class="form-control form-control" type="text" data-bs-theme="light" id="name" name="name"></div>
+                    <div class="mb-3"><label class="form-label form-label" for="subject">Asunto</label><input class="form-control form-control" type="text" data-bs-theme="light" id="subject" name="subject"></div>
                     <div class="mb-3"><label class="form-label form-label" for="email">Email</label><input class="form-control form-control" type="email" data-bs-theme="light" id="email" name="email"></div>
-                    <div class="mb-3"><label class="form-label form-label" for="message">Message</label><textarea class="form-control form-control" data-bs-theme="light" id="message" name="message"></textarea></div>
+                    <div class="mb-3"><label class="form-label form-label" for="message">Mensaje</label><textarea class="form-control form-control" data-bs-theme="light" id="message" name="message"></textarea></div>
                     <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
-                    <div class="mb-3"><button class="btn btn-primary" type="submit">Send</button></div>
+                    <div class="mb-3"><button class="btn btn-primary" type="submit">Enviar</button></div>
                 </form>
             </div>
         </section>
