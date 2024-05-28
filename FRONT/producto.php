@@ -1,4 +1,5 @@
 <?php
+    session_start();
 if (isset($_GET['libro']) && ctype_digit($_GET['libro'])) {
 	$idLibro = htmlspecialchars($_GET['libro']);
 	
@@ -114,7 +115,7 @@ if (isset($_GET['libro']) && ctype_digit($_GET['libro'])) {
             </div>
         </section>
     </main>
-     <footer class="bg-primary-gradient" style="background: #212529;color: var(--bs-white);">
+    <footer class="bg-primary-gradient" style="background: #212529;color: var(--bs-white);">
         <div class="container py-4 py-lg-5">
             <div class="row justify-content-center">
                 <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column">
@@ -137,7 +138,27 @@ if (isset($_GET['libro']) && ctype_digit($_GET['libro'])) {
                     <div class="fw-bold d-flex align-items-center mb-2"><span class="bs-icon-sm bs-icon-circle bs-icon-primary d-flex justify-content-center align-items-center bs-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-shop-window">
                                 <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h12V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5m2 .5a.5.5 0 0 1 .5.5V13h8V9.5a.5.5 0 0 1 1 0V13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5"></path>
                             </svg></span><span>Books Zone</span></div>
-                    <p style="color: var(--bs-white);">Sem eleifend donec molestie, integer quisque orci aliquam.</p>
+                    <nav class="navbar navbar-expand-lg" style="background: #212529; color: var(--bs-white);">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="index.php">Inicio</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="contacto.php">Contacto</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="ayuda.php">Ayuda</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="nosotros.php">Nosotros</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
             </div>
             <hr>

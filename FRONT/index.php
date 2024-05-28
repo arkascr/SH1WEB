@@ -103,31 +103,31 @@ require_once('../BACK/services/LibrosService.php');
         </div>
     </header>
     <section>
-    <div class="container py-5">
-    <div class="mx-auto" style="max-width: 900px;">
-        <div class="row d-flex justify-content-center">
-            <?php 
-            $libros = new Libros();
-            $result = $libros->getLibros();
-            foreach ($result as $libro) : 
-            $imagen64 = base64_encode($libro["imagen"]);
-            ?>
-            
-                <div class="col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
-                    <div class="card bg-info-subtle" style="width: 300px;">
-                        <div class="card-body text-center px-4 py-5 px-md-5">
-                            <a href="./producto.php?libro=<?=$libro["ID"]?>"><img class="img-fluid d-block mx-auto" src="data:image/jpeg;base64, <?= $imagen64 ?>"></a>
-                            <h5 class="fw-bold card-title mb-3"><?= htmlspecialchars($libro['titulo']); ?></h5>
-                            <p class="fw-bold text-info card-text mb-2"><?= htmlspecialchars($libro['descripcion']); ?></p>
-                            <p class="fw-bold text-info card-text mb-2"><?= htmlspecialchars('$'.$libro['precio']); ?></p>
-                            <button class="btn btn-info btn-sm" type="button" onclick="location.href='./producto.php?libro=<?=$libro['ID']?>'">Leer</button>
+        <div class="container py-5">
+            <div class="mx-auto" style="max-width: 900px;">
+                <div class="row d-flex justify-content-center">
+                    <?php
+                    $libros = new Libros();
+                    $result = $libros->getLibros();
+                    foreach ($result as $libro) :
+                        $imagen64 = base64_encode($libro["imagen"]);
+                    ?>
+
+                        <div class="col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
+                            <div class="card bg-info-subtle" style="width: 300px;">
+                                <div class="card-body text-center px-4 py-5 px-md-5">
+                                    <a href="./producto.php?libro=<?= $libro["ID"] ?>"><img class="img-fluid d-block mx-auto" src="data:image/jpeg;base64, <?= $imagen64 ?>"></a>
+                                    <h5 class="fw-bold card-title mb-3"><?= htmlspecialchars($libro['titulo']); ?></h5>
+                                    <p class="fw-bold text-info card-text mb-2"><?= htmlspecialchars($libro['descripcion']); ?></p>
+                                    <p class="fw-bold text-info card-text mb-2"><?= htmlspecialchars('$' . $libro['precio']); ?></p>
+                                    <button class="btn btn-info btn-sm" type="button" onclick="location.href='./producto.php?libro=<?= $libro['ID'] ?>'">Leer</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
-            <?php endforeach; ?>
+            </div>
         </div>
-    </div>
-</div>
 
     </section>
     <footer class="bg-primary-gradient" style="background: #212529;color: var(--bs-white);">
@@ -153,10 +153,27 @@ require_once('../BACK/services/LibrosService.php');
                     <div class="fw-bold d-flex align-items-center mb-2"><span class="bs-icon-sm bs-icon-circle bs-icon-primary d-flex justify-content-center align-items-center bs-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-shop-window">
                                 <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h12V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5m2 .5a.5.5 0 0 1 .5.5V13h8V9.5a.5.5 0 0 1 1 0V13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5"></path>
                             </svg></span><span>Books Zone</span></div>
-                    <p style="color: var(--bs-white);">
-                    <div id="mysitemapgenerator_loadcorsdata" data-token="75e3a3362c516bae1bf8712e1d68f0b2" data-domain="www.mysitemapgenerator.com"></div>
-                    <script src="https://cdn.mysitemapgenerator.com/api/embedmap.m.js"></script>
-                    </p>
+                    <nav class="navbar navbar-expand-lg" style="background: #212529; color: var(--bs-white);">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="index.php">Inicio</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="contacto.php">Contacto</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="ayuda.php">Ayuda</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="nosotros.php">Nosotros</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
             </div>
             <hr>
