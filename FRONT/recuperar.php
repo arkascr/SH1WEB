@@ -46,8 +46,8 @@
                     <a class="btn btn-primary shadow" role="button" href="login.php" style="width: 226.034px;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 28px;">
                         <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
-                        <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM208 240c-76.4 0 -224 38.8 -224 116.8C-16 384 0 400 16 400H400c16 0 32 -16 32 -43.2c0 -78 -147.6 -116.8 -224 -116.8z"></path>
-                    </svg>&nbsp;Login</a>
+                        <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"></path>
+                    </svg>&nbsp;Iniciar Sesión</a>
             </div>
         </div>
     </nav>
@@ -73,7 +73,6 @@
                             <form class="text-center" method="post" id="myForm" action="reset_password.php">
                                 <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="Correo electrónico" required=""></div>
                                 <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Restablecer la contraseña</button></div>
-                                <div class="g-recaptcha" data-sitekey="6Ld3O-YpAAAAAGgEUgftEHmEYKFmHwAAw58TEVfx"></div>
                                 <hr>
                                 <a class="btn btn-primary d-block w-100 mb-2" role="button" href="registrar.php">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-plus-fill">
@@ -81,9 +80,10 @@
                                         <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"></path>
                                     </svg>&nbsp;Registrar</a>
                                 <a class="btn btn-primary d-block w-100" role="button" href="login.php">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" class="bi bi-person-circle">
-                                        <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM208 240c-76.4 0 -224 38.8 -224 116.8C-16 384 0 400 16 400H400c16 0 32 -16 32 -43.2c0 -78 -147.6 -116.8 -224 -116.8z"></path>
-                                    </svg>&nbsp;Login</a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
+                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
+                        <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"></path>
+                    </svg>&nbsp;Iniciar Sesión</a>
                             </form>
                         </div>
                     </div>

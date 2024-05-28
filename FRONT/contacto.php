@@ -8,6 +8,15 @@ require '../FRONT/vendor/PHPMailer/PHPMailer/src/SMTP.php';
 
     // Recoger los datos del formulario
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+    $recaptcha_secret = '6Ld3O-YpAAAAACNdwck2QXIk0dAkXpjbgT8LVKus';
+    $recaptcha_response = $_POST['g-recaptcha-response'];
+
+    $response = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+    $responseKeys = json_decode($response, true);
+
+   // if ($responseKeys["success"] && $responseKeys["score"] >= 0.5) {
+		
     $name = htmlspecialchars($_POST['name']);
     $subject = htmlspecialchars($_POST['subject']);
     $email = htmlspecialchars($_POST['email']);
@@ -49,6 +58,8 @@ require '../FRONT/vendor/PHPMailer/PHPMailer/src/SMTP.php';
     } catch (Exception $e) {
     echo "<script>alert('No se pudo enviar el correo. Error: " . $mail->ErrorInfo . "');</script>";
     }
+		
+//	}
 }
 
 ?>
@@ -72,6 +83,7 @@ require '../FRONT/vendor/PHPMailer/PHPMailer/src/SMTP.php';
     <link rel="stylesheet" href="assets/css/css/vanilla-zoom.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min-1.css">
     <link rel="stylesheet" href="assets/css/fonts/simple-line-icons.min.css">
+	<script src="https://www.google.com/recaptcha/api.js?render=6Ld3O-YpAAAAAGgEUgftEHmEYKFmHwAAw58TEVfx"></script>
 </head>
 
 <body>
@@ -117,6 +129,7 @@ require '../FRONT/vendor/PHPMailer/PHPMailer/src/SMTP.php';
                     <div class="mb-3"><label class="form-label form-label" for="subject">Subject</label><input class="form-control form-control" type="text" data-bs-theme="light" id="subject" name="subject"></div>
                     <div class="mb-3"><label class="form-label form-label" for="email">Email</label><input class="form-control form-control" type="email" data-bs-theme="light" id="email" name="email"></div>
                     <div class="mb-3"><label class="form-label form-label" for="message">Message</label><textarea class="form-control form-control" data-bs-theme="light" id="message" name="message"></textarea></div>
+					<input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
                     <div class="mb-3"><button class="btn btn-primary" type="submit">Send</button></div>
                 </form>
             </div>
@@ -192,6 +205,17 @@ require '../FRONT/vendor/PHPMailer/PHPMailer/src/SMTP.php';
     <script src="assets/js/js/baguetteBox.min.js"></script>
     <script src="assets/js/js/vanilla-zoom.js"></script>
     <script src="assets/js/js/theme.js"></script>
+	<script>
+    grecaptcha.ready(function() {
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            grecaptcha.execute('6Ld3O-YpAAAAAGgEUgftEHmEYKFmHwAAw58TEVfx', {action: 'submit'}).then(function(token) {
+                document.getElementById('g-recaptcha-response').value = token;
+                document.getElementById('myForm').submit();
+            });
+        });
+    });
+	</script>
 </body>
 
 </html>
