@@ -1,12 +1,40 @@
 <?php
+	require_once('../BACK/services/UsuariosService.php');
+
 if (isset($_GET['token'])) {
-
-    // Dirección del destinatario
-    $token = $_GET['token'];
-
+    $token = htmlspecialchars($_GET['token']);
+	$usuario = new Usuario();
     $tokenExitoso = $usuario->buscarToken($token);
-} else {
+	
+	if(!$tokenExitoso){
+		echo '<script>
+        alert("El token expiró, favor de generar uno nuevo.");
+        window.location.href = "index.php";
+    </script>';
+    exit;
+	}
+	
+} else
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	require_once('../BACK/services/UsuariosService.php');
+	$password = $_POST["pass"];
+	$token = $_POST["token"];
+	
+	$usuario = new Usuario();
+	
+	
+    $passRes = $usuario->actualizarPass($password,$token);
+	
+	echo '<script>
+        alert("La contraseña se ha cambiado exitosamente.");
+        window.location.href = "login.php";
+    </script>';
+    exit;
 }
+else{
+	header('Location: index.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en" data-bss-forced-theme="light">
@@ -65,18 +93,18 @@ if (isset($_GET['token'])) {
         <section class="clean-block clean-form dark">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Registration</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+                    <h2 class="text-info">Cambiar contraseña</h2>
                 </div>
                 <?php if ($tokenExitoso) { ?>
-                    <form method="post" action="actualizarPass.php">
+                    <form class="text-center" method="post" id="frmRecuperar" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" onsubmit="return validarPass()">
                         <div class="mb-3">
                             <label class="form-label form-label" for="password">Password</label>
                             <input class="form-control form-control item" type="password" data-bs-theme="light" id="password" name="pass" required>
+							<input class="form-control form-control item" type="hidden" data-bs-theme="light" id="token" name="token" required value="<?=$token?>">
                         </div>
                         <div class="mb-3">
                             <label class="form-label form-label" for="password">Confirmar password</label>
-                            <input class="form-control form-control item" type="password2" data-bs-theme="light" id="password2" name="pass2" required>
+                            <input class="form-control form-control item" type="password" data-bs-theme="light" id="password2" name="pass2" required>
                         </div>
                         <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
                         <button class="btn btn-primary" type="submit" name="cambiar">Cambiar</button>
@@ -149,7 +177,6 @@ if (isset($_GET['token'])) {
                 </ul>
             </div>
         </div>
-    </footer>>
     </footer>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
@@ -171,7 +198,17 @@ if (isset($_GET['token'])) {
             });
         });
     </script>
-
+    <script>
+        function validarPass() {
+            var password = document.getElementById("password").value;
+            var password2 = document.getElementById("password2").value;
+            if (password !== password2) {
+                alert("Las contraseñas no coinciden.");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 
 </html>

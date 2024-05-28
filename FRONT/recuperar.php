@@ -1,10 +1,104 @@
+<?php
+
+use LDAP\Result;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../FRONT/vendor/PHPMailer/PHPMailer/src/Exception.php';
+require '../FRONT/vendor/PHPMailer/PHPMailer/src/PHPMailer.php';
+require '../FRONT/vendor/PHPMailer/PHPMailer/src/SMTP.php';
+
+function generateToken($length) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $token = '';
+    $maxIndex = strlen($characters) - 1;
+
+    for ($i = 0; $i < $length; $i++) {
+        $randomIndex = mt_rand(0, $maxIndex);
+        $token .= $characters[$randomIndex];
+    }
+
+    return $token;
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	
+	require_once('../BACK/services/UsuariosService.php');
+	$email = $_POST["email"];
+	
+	$usuario = new Usuario();
+    $emailResult = $usuario->buscarUsuario($email);
+	if($emailResult){
+		
+		$mensaje = "Exito";
+		$token = generateToken(20);
+		
+		// actualiza token del usuario
+		$usuario->guardaToken($token, $email);
+		
+		$recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+		$recaptcha_secret = '6Ld3O-YpAAAAACNdwck2QXIk0dAkXpjbgT8LVKus';
+		$recaptcha_response = $_POST['g-recaptcha-response'];
+
+		$response = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+		$responseKeys = json_decode($response, true);
+
+		// if ($responseKeys["success"] && $responseKeys["score"] >= 0.5) {
+
+		$email = htmlspecialchars($_POST['email']);
+
+		$correo_origen = "bravo1m12@gmail.com";
+		$contrasena_correo = 'idpt lype umqc kvzw ';
+		$para = 'rafaxer123@hotmail.com';
+		$asunto =  'Asunto : Restablecer su contraseña';
+
+		$mail = new PHPMailer(true);
+
+		try {
+			$mail->isSMTP();
+			$mail->Host = 'smtp.gmail.com';
+			$mail->SMTPAuth = true;
+			$mail->Username = $correo_origen;
+			$mail->Password = $contrasena_correo;
+			$mail->SMTPSecure = 'tls';
+			$mail->Port = 587;
+
+			$mail->setFrom($correo_origen);
+			$mail->addAddress($email);
+			$mail->Subject = $asunto;
+			$mail->CharSet = 'UTF-8';
+			$mail->isHTML(true);
+			
+			$enlace = 'http://localhost:82/SH1WEB/FRONT/reset_password.php?token='.$token;
+    		$mensajeHTML = '<p>Para poder restablecer tu contraseña, haz click en el siguente enlace: <br><br> <a href="' . $enlace . '" target="_blank">Resetear contraseña</a>.</p>';
+    		$mail->Body = $mensajeHTML;
+
+
+			if (!$mail->send()) {
+				 $error = $mail->ErrorInfo;
+			} else {
+				$mensaje = "Exito";
+			}
+		} catch (Exception $e) {
+			 $error = 'No se pudo enviar el correo. Error: ' . $mail->ErrorInfo;
+		}
+
+    //	}
+	}else{
+		$error = true;
+	}
+
+
+}
+?>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en" data-bss-forced-theme="light">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Register - Brand</title>
+    <title>Recuperar contraseña - Book Zone</title>
     <meta name="description" content="Venta de Libros en linea">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
@@ -57,9 +151,19 @@
             <div class="row mb-5">
                 <div class="col-md-8 col-xl-6 text-center mx-auto">
                     <h2>Restablecimiento de contraseña</h2>
-                    <p class="w-lg-50"></p>
+					<?php if (!empty($error)) : ?>
+                    <div class="alert alert-danger" role="alert">
+                        El correo no está registrado.
+                    </div>
+                <?php endif; ?>
+					<?php if (!empty($mensaje)) : ?>
+                    <div class="alert alert-success" role="success">
+                        Se ha enviado un correo para cambiar la contraseña.
+                    </div>
+                <?php endif; ?>
                 </div>
             </div>
+			
             <div class="row d-flex justify-content-center">
                 <div class="col-md-6 col-xl-4">
                     <div class="card mb-5">
@@ -70,8 +174,11 @@
                                     <path d="M3 9a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9zm2-1a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H5z"></path>
                                 </svg>
                             </div>
-                            <form class="text-center" method="post" id="myForm" action="reset_password.php">
-                                <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="Correo electrónico" required=""></div>
+                            <form class="text-center" method="post" id="frmRecuperar" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                <div class="mb-3">
+								 <input class="form-control" type="email" name="email" placeholder="Correo electrónico" required="">
+								 <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+								</div>
                                 <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Restablecer la contraseña</button></div>
                                 <hr>
                                 <a class="btn btn-primary d-block w-100 mb-2" role="button" href="registrar.php">
@@ -155,7 +262,7 @@
     </footer>
     <script>
         function onSubmit(token) {
-            document.getElementById("myForm").submit();
+            document.getElementById("frmRecuperar").submit();
         }
 
         grecaptcha.ready(function () {

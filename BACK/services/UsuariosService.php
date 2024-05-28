@@ -32,49 +32,28 @@ class Usuario {
         return $result;
     }
 
-   /*  public function login($correo, $contrasena) {
-        // Obtener la contraseña almacenada para el correo dado
-        $stmt = $this->dbEvents->prepare("SELECT pass FROM usuarios WHERE email = :correo");
-        $stmt->bindParam(':correo', $correo);
-        $stmt->execute();
+	public function login($correo, $contrasena) {
+		// Obtener la contraseña almacenada para el correo dado
+		$stmt = $this->dbEvents->prepare("SELECT id, email, pass FROM usuarios WHERE email = :correo");
+		$stmt->bindParam(':correo', $correo);
+		$stmt->execute();
 
-        if ($stmt->rowCount() !== 1) {
-            return false; // Usuario no encontrado
-        }
+		if ($stmt->rowCount() !== 1) {
+			return false; // Usuario no encontrado
+		}
 
-        $hashedPassword = $stmt->fetchColumn();
+		$usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Verificar la contraseña
-        if (password_verify($contrasena, $hashedPassword)) {
-
-            return true; // Contraseña correcta
-        } else {
-            return false; // Contraseña incorrecta
-        }
-    }
- */
-public function login($correo, $contrasena) {
-    // Obtener la contraseña almacenada para el correo dado
-    $stmt = $this->dbEvents->prepare("SELECT id, email, pass FROM usuarios WHERE email = :correo");
-    $stmt->bindParam(':correo', $correo);
-    $stmt->execute();
-
-    if ($stmt->rowCount() !== 1) {
-        return false; // Usuario no encontrado
-    }
-
-    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // Verificar la contraseña
-    if (password_verify($contrasena, $usuario['pass'])) {
-        // Contraseña correcta, devolver el correo electrónico del usuario
-        return $usuario['email'];
-    } else {
-        return false; // Contraseña incorrecta
-    }
-}
+		// Verificar la contraseña
+		if (password_verify($contrasena, $usuario['pass'])) {
+			// Contraseña correcta, devolver el correo electrónico del usuario
+			return $usuario['email'];
+		} else {
+			return false; // Contraseña incorrecta
+		}
+	}
  
-    public function buscarUsuario($correo) {
+   public function buscarUsuario($correo) {
         $stmt = $this->dbEvents->prepare("SELECT id FROM usuarios WHERE email = :correo");
         $stmt->bindParam(':correo', $correo);
         $stmt->execute();
@@ -85,13 +64,36 @@ public function login($correo, $contrasena) {
             return false; // Usuario no encontrado
         }
     }
-}
+	
+	public function guardaToken($token, $email) {
+        $stmt = $this->dbEvents->prepare("UPDATE usuarios SET token = :token  WHERE email = :correo");
+        $stmt->bindParam(':token', $token);
+        $stmt->bindParam(':correo', $email);
+        $result = $stmt->execute();
 
-/* este es para calar a ver si funciona we 
-$user = new Usuario();
-$resultadoRegistro = $usuario->registrarUsuario("Ejemplo Usuario", "ejemplo@example.com", "contraseña");
-if ($resultadoRegistro) {
-    echo "Registro exitoso!";
-} else {
-    echo "El correo electrónico ya está registrado.";
-} */
+        return $result;
+    }
+	
+	public function buscarToken($token) {
+        $stmt = $this->dbEvents->prepare("SELECT * FROM usuarios WHERE token = :token");
+        $stmt->bindParam(':token', $token);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            return true; // Usuario encontrado
+        } else {
+            return false; // Usuario no encontrado
+        }
+    }
+	
+	public function actualizarPass($password, $token) {
+		
+		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $stmt = $this->dbEvents->prepare("UPDATE usuarios SET pass = :password, token = ''  WHERE token = :token");
+		$stmt->bindParam(':password', $hashedPassword);
+        $stmt->bindParam(':token', $token);
+        $result = $stmt->execute();
+		
+        return $result;
+    }
+}
