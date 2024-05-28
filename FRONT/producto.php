@@ -100,8 +100,11 @@ if (isset($_GET['libro']) && ctype_digit($_GET['libro'])) {
 							?>
 							<div class="col-md-12">
                                 <div class="info">
-                                    <h3>Para leer el contenido, tienes que estar registado.</h3>
-                                   <a href="./registrar.php">Registrarme.</a>
+                                    <h3>Para leer el contenido, tienes que iniciar sesión</h3>
+									<a href="./login.php">Iniciar Sesión</a>
+									<hr>
+									<h3>o Registrarte.</h3>
+                                    <a href="./registrar.php">Registrarme.</a>
                                 </div>
                             </div>
 							<?php } ?>
