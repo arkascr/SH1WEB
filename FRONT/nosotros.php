@@ -55,16 +55,16 @@
         <section class="clean-block about-us">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">About Us</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+                    <h2 class="text-info">Sobre Nosotros</h2>
+                    <p>Somos una amantes de la lectura y buscamos aventurarnos con mas lectores a travez de la tecnologia.</p>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-sm-6 col-lg-4">
                         <div class="card text-center clean-card"><img class="card-img-top w-100 d-block card-img-top w-100" src="assets/img/avatars/avatar1.jpg">
                             <div class="card-body info">
                                 <h4 class="card-title">John Smith</h4>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <div class="icons"><a href="#"><i class="icon-social-facebook"></i></a><a href="#"><i class="icon-social-instagram"></i></a><a href="#"><i class="icon-social-twitter"></i></a></div>
+                                <p class="card-text">Soy el creador de la pagina Books zone, y al igual que ustedes disfruto leer dia con dia</p>
+                                <div class="icons"><a href="https://www.facebook.com/tagtico?mibextid=ZbWKwL"><i class="icon-social-facebook"></i></a><a href="https://x.com/Tagtico?t=zGja5g6G0rKu0qzeHdEDqA&s=09"><i class="icon-social-twitter"></i></a></div>
                             </div>
                         </div>
                     </div>
@@ -72,8 +72,8 @@
                         <div class="card text-center clean-card"><img class="card-img-top w-100 d-block card-img-top w-100" src="assets/img/avatars/avatar2.jpg">
                             <div class="card-body info">
                                 <h4 class="card-title">Robert Downturn</h4>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <div class="icons"><a href="#"><i class="icon-social-facebook"></i></a><a href="#"><i class="icon-social-instagram"></i></a><a href="#"><i class="icon-social-twitter"></i></a></div>
+                                <p class="card-text">Soy desarrollador pero en mis tiempos libres me encanta leer</p>
+                                <div class="icons"><a href="https://www.facebook.com/tagtico?mibextid=ZbWKwL"><i class="icon-social-facebook"></i></a><a href="https://x.com/Tagtico?t=zGja5g6G0rKu0qzeHdEDqA&s=09"><i class="icon-social-twitter"></i></a></div>
                             </div>
                         </div>
                     </div>
@@ -81,8 +81,8 @@
                         <div class="card text-center clean-card"><img class="card-img-top w-100 d-block card-img-top w-100" src="assets/img/avatars/avatar3.jpg">
                             <div class="card-body info">
                                 <h4 class="card-title">Ally Sanders</h4>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <div class="icons"><a href="#"><i class="icon-social-facebook"></i></a><a href="#"><i class="icon-social-instagram"></i></a><a href="#"><i class="icon-social-twitter"></i></a></div>
+                                <mo class="card-text">Soy adicta a leer un buen libro mientras disfruto de un buen café</p>
+                                <div class="icons"><a href="https://www.facebook.com/tagtico?mibextid=ZbWKwL"><i class="icon-social-facebook"></i></a><a href="https://x.com/Tagtico?t=zGja5g6G0rKu0qzeHdEDqA&s=09"><i class="icon-social-twitter"></i></a></div>
                             </div>
                         </div>
                     </div>
@@ -96,9 +96,8 @@
                 <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column">
                     <h3 class="fs-6 fw-bold">Servicios</h3>
                     <ul class="list-unstyled">
-                        <li><a href="#" style="color: var(--bs-white);">Web design</a></li>
-                        <li><a href="#" style="color: var(--bs-white);">Development</a></li>
-                        <li></li>
+                        <li><a href="#" style="color: var(--bs-white);">8445007890</a></li>
+                        <div class="icons"><a href="https://www.facebook.com/tagtico?mibextid=ZbWKwL"><i class="icon-social-facebook"></i></a><a href="https://x.com/Tagtico?t=zGja5g6G0rKu0qzeHdEDqA&s=09"><i class="icon-social-twitter"></i></a></div>
                     </ul>
                 </div>
                 <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column">

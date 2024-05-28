@@ -131,12 +131,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <footer class="bg-primary-gradient" style="background: #212529;color: var(--bs-white);">
         <div class="container py-4 py-lg-5">
             <div class="row justify-content-center">
-                <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column">
+            <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column">
                     <h3 class="fs-6 fw-bold">Servicios</h3>
                     <ul class="list-unstyled">
-                        <li><a href="#" style="color: var(--bs-white);">Web design</a></li>
-                        <li><a href="#" style="color: var(--bs-white);">Development</a></li>
-                        <li></li>
+                        <li><a href="#" style="color: var(--bs-white);">8445007890</a></li>
+                        <div class="icons"><a href="https://www.facebook.com/tagtico?mibextid=ZbWKwL"><i class="icon-social-facebook"></i></a><a href="https://x.com/Tagtico?t=zGja5g6G0rKu0qzeHdEDqA&s=09"><i class="icon-social-twitter"></i></a></div>
                     </ul>
                 </div>
                 <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column">

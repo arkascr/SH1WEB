@@ -52,10 +52,6 @@ $rCategorias = $libros->getCategorias();
                         <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"></path>
                         <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"></path>
                     </svg>&nbsp;Registrar</a>
-                <!-- <a class="btn btn-primary shadow" role="button" href="login.php" style="width: 226.034px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 28px;">
-                        <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"></path>
-                    </svg>&nbsp;Iniciar Sesión</a> -->
                 <?php
                 if (isset($_SESSION['usuario'])) {
                     echo '<a class="btn btn-primary shadow" role="button" href="logout.php" style="width: 226.034px;">
@@ -78,22 +74,7 @@ $rCategorias = $libros->getCategorias();
             ?>
         </div>
     </nav>
-    <section style="--bs-body-bg: var(--bs-success);">
-        <div class="container" style="width: 100%;">
-            <nav class="navbar navbar-expand-md bg-body py-3" style="border-color: var(--bs-navbar-active-color);--bs-body-bg: var(--bs-success);background: var(--bs-blue);">
-                <div class="container">
-                    <div class="collapse navbar-collapse" id="navcol-3" style="background: var(--bs-primary-text-emphasis);">
-                        <ul class="navbar-nav mx-auto">
-                            <li class="nav-item"><a class="nav-link active" href="#" style="color: var(--bs-white);">Ofertas</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" style="color: var(--bs-white);">Escolares</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" style="color: var(--bs-white);">Infantil</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" style="color: var(--bs-white);">Cocina</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </section>
+
     <header class="bg-primary-gradient">
         <div class="carousel slide" data-bs-ride="carousel" id="carousel-2">
             <div class="carousel-inner">
@@ -108,13 +89,15 @@ $rCategorias = $libros->getCategorias();
     <section>
         <div class="container py-5">
             <div class="mx-auto" style="max-width: 900px;">
-				<div class="row d-flex justify-content-center">
-					<div class="col-12 mb-4"><h2>Filtrar por categorías</h2></div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12 mb-4">
+                        <h2>Filtrar por categorías</h2>
+                    </div>
                     <!-- Selector de categorías -->
                     <div class="col-12 mb-4">
                         <select id="categoria-selector" class="form-control">
-							<option value="0" selected>Todos</option>
-                          <?php foreach ($rCategorias as $categoria): ?>
+                            <option value="0" selected>Todos</option>
+                            <?php foreach ($rCategorias as $categoria) : ?>
                                 <option value="<?= htmlspecialchars($categoria['id_categoria']) ?>">
                                     <?= htmlspecialchars($categoria['genero']) ?>
                                 </option>
@@ -134,9 +117,8 @@ $rCategorias = $libros->getCategorias();
                 <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column">
                     <h3 class="fs-6 fw-bold">Servicios</h3>
                     <ul class="list-unstyled">
-                        <li><a href="#" style="color: var(--bs-white);">Web design</a></li>
-                        <li><a href="#" style="color: var(--bs-white);">Development</a></li>
-                        <li></li>
+                        <li><a href="#" style="color: var(--bs-white);">8445007890</a></li>
+                        <div class="icons"><a href="https://www.facebook.com/tagtico?mibextid=ZbWKwL"><i class="icon-social-facebook"></i></a><a href="https://x.com/Tagtico?t=zGja5g6G0rKu0qzeHdEDqA&s=09"><i class="icon-social-twitter"></i></a></div>
                     </ul>
                 </div>
                 <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column">
@@ -195,7 +177,7 @@ $rCategorias = $libros->getCategorias();
         <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
         <div class="elfsight-app-dcf5070e-9310-4dfd-8b34-957d71456614" data-elfsight-app-lazy></div>
     </div>
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/bold-and-bright.js"></script>
@@ -203,14 +185,16 @@ $rCategorias = $libros->getCategorias();
     <script src="assets/js/js/baguetteBox.min.js"></script>
     <script src="assets/js/js/vanilla-zoom.js"></script>
     <script src="assets/js/js/theme.js"></script>
-	<script>
-        $(document).ready(function(){
+    <script>
+        $(document).ready(function() {
             // Función para cargar las tarjetas basadas en la categoría seleccionada
             function cargarTarjetas(categoria) {
                 $.ajax({
                     url: 'obtener_libros.php',
                     type: 'GET',
-                    data: { categoria: categoria },
+                    data: {
+                        categoria: categoria
+                    },
                     success: function(response) {
                         $('#libroContainer').html(response);
                     }
@@ -226,15 +210,15 @@ $rCategorias = $libros->getCategorias();
                 var categoriaSeleccionada = $(this).val();
                 cargarTarjetas(categoriaSeleccionada);
             });
-			
-			// Manejar la selección de "todos"
-			$('#categoria-selector').change(function() {
-				var categoriaSeleccionada = $(this).val();
-				if (categoriaSeleccionada === '0') {
-					cargarTarjetas('0');
-				}
-			});
-				});
+
+            // Manejar la selección de "todos"
+            $('#categoria-selector').change(function() {
+                var categoriaSeleccionada = $(this).val();
+                if (categoriaSeleccionada === '0') {
+                    cargarTarjetas('0');
+                }
+            });
+        });
     </script>
     </>
 

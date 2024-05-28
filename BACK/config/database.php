@@ -5,7 +5,7 @@ class Database {
 	
     public static function connectDB() {
         try {
-			$dsn = "mysql:host=localhost;port=3307;dbname=username;";
+			$dsn = "mysql:host=localhost;port=3307;dbname=biblioteca;";
             $dbUser = "admin"; // cambiar
             $dbPass = "password123"; // cambiar
             
