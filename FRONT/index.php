@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once('../BACK/services/LibrosService.php');
+
 ?>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
@@ -51,25 +53,24 @@ session_start();
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 28px;">
                         <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"></path>
                     </svg>&nbsp;Iniciar Sesión</a> -->
-                    <?php
-                    if (isset($_SESSION['usuario'])) {
-                        echo '<a class="btn btn-primary shadow" role="button" href="logout.php" style="width: 226.034px;">
+                <?php
+                if (isset($_SESSION['usuario'])) {
+                    echo '<a class="btn btn-primary shadow" role="button" href="logout.php" style="width: 226.034px;">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 28px;">
                                     <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"></path>
                                 </svg>&nbsp;Cerrar Sesión</a>';
-                    } else {
-                        echo '<a class="btn btn-primary shadow" role="button" href="login.php" style="width: 226.034px;">
+                } else {
+                    echo '<a class="btn btn-primary shadow" role="button" href="login.php" style="width: 226.034px;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 28px;">
                         <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"></path>
                     </svg>&nbsp;Iniciar Sesión</a>';
-                    }
-                    ?>
+                }
+                ?>
 
             </div>
             <?php
             if (isset($_SESSION['usuario'])) {
                 echo '<h5 style="color: #888686; ">' . htmlspecialchars($_SESSION['usuario']) . '</h5>';
-
             }
             ?>
         </div>
@@ -102,36 +103,32 @@ session_start();
         </div>
     </header>
     <section>
-        <div class="container py-5">
-            <div class="mx-auto" style="max-width: 900px;">
-                <div class="row row-cols-1 row-cols-md-2 d-flex justify-content-center">
-                    <div class="col-xxl-4 mb-4" style="width: 300px;">
-                        <div class="card bg-primary-subtle">
-                            <div class="card-body text-center px-4 py-5 px-md-5">
-                                <p class="fw-bold text-primary card-text mb-2">Fully Managed</p>
-                                <h5 class="fw-bold card-title mb-3">Lorem ipsum dolor sit&nbsp;nullam et quis ad cras porttitor</h5><button class="btn btn-primary btn-sm" type="button">Learn more</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-4 mb-4" style="width: 300px;">
-                        <div class="card bg-secondary-subtle">
-                            <div class="card-body text-center px-4 py-5 px-md-5">
-                                <p class="fw-bold text-secondary card-text mb-2">Fully Managed</p>
-                                <h5 class="fw-bold card-title mb-3">Lorem ipsum dolor sit&nbsp;nullam et quis ad cras porttitor</h5><button class="btn btn-secondary btn-sm" type="button">Learn more</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-4 mb-4" style="width: 300px;">
-                        <div class="card bg-info-subtle">
-                            <div class="card-body text-center px-4 py-5 px-md-5">
-                                <p class="fw-bold text-info card-text mb-2">Fully Managed</p>
-                                <h5 class="fw-bold card-title mb-3">Lorem ipsum dolor sit&nbsp;nullam et quis ad cras porttitor</h5><button class="btn btn-info btn-sm" type="button">Learn more</button>
-                            </div>
+    <div class="container py-5">
+    <div class="mx-auto" style="max-width: 900px;">
+        <div class="row d-flex justify-content-center">
+            <?php 
+            $libros = new Libros();
+            $result = $libros->getLibros();
+            foreach ($result as $libro) : 
+            $imagen64 = base64_encode($libro["imagen"]);
+            ?>
+            
+                <div class="col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
+                    <div class="card bg-info-subtle" style="width: 300px;">
+                        <div class="card-body text-center px-4 py-5 px-md-5">
+                            <a href="./producto.php?libro=<?=$libro["ID"]?>"><img class="img-fluid d-block mx-auto" src="data:image/jpeg;base64, <?= $imagen64 ?>"></a>
+                            <h5 class="fw-bold card-title mb-3"><?= htmlspecialchars($libro['titulo']); ?></h5>
+                            <p class="fw-bold text-info card-text mb-2"><?= htmlspecialchars($libro['descripcion']); ?></p>
+                            <p class="fw-bold text-info card-text mb-2"><?= htmlspecialchars('$'.$libro['precio']); ?></p>
+                            <button class="btn btn-info btn-sm" type="button" onclick="location.href='./producto.php?libro=<?=$libro['ID']?>'">Leer</button>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
         </div>
+    </div>
+</div>
+
     </section>
     <footer class="bg-primary-gradient" style="background: #212529;color: var(--bs-white);">
         <div class="container py-4 py-lg-5">

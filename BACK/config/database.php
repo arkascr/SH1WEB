@@ -5,9 +5,10 @@ class Database {
 	
     public static function connectDB() {
         try {
-			$dsn = "mysql:host=localhost;port=3307;dbname=biblioteca;";
-			$dbUser = "root";
-			$dbPass = "";
+			$dsn = "mysql:host=localhost;port=3307;dbname=username;";
+            $dbUser = "admin"; // cambiar
+            $dbPass = "password123"; // cambiar
+            
 
 			$options = [
 				PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
