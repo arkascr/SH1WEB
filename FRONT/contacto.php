@@ -2,9 +2,9 @@
 use LDAP\Result;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require '../../vendor/PHPMailer/PHPMailer/src/Exception.php';
-require '../../vendor/PHPMailer/PHPMailer/src/PHPMailer.php';
-require '../../vendor/PHPMailer/PHPMailer/src/SMTP.php';
+require '../FRONT/vendor/PHPMailer/PHPMailer/src/Exception.php';
+require '../FRONT/vendor/PHPMailer/PHPMailer/src/PHPMailer.php';
+require '../FRONT/vendor/PHPMailer/PHPMailer/src/SMTP.php';
 
     // Recoger los datos del formulario
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -15,14 +15,12 @@ require '../../vendor/PHPMailer/PHPMailer/src/SMTP.php';
 
     $to = "bravo1m12@gmail.com"; 
     //$correo = $_POST['email'];
-
-    $descripcion = "";
     
-    $correo_origen = 'bravo1m12@gmail.com';
+    $correo_origen = $to;
     $contrasena_correo = 'idpt lype umqc kvzw ';
     $para = 'rafaxer123@hotmail.com';
     $asunto =  'Asunto : ' . $subject . '';
-    $mensaje = 'Nombre : ' . $name . ' Mensaje : ' . $message . '';
+    $mensaje = 'Nombre : ' . $name . ' Mensaje : ' . $message . ' Email: '. $email;
     
     $mail = new PHPMailer(true);
     
@@ -40,11 +38,16 @@ require '../../vendor/PHPMailer/PHPMailer/src/SMTP.php';
         $mail->Subject = $asunto;
         $mail->Body = $mensaje;
     
-        $mail->send();
-    
+		
+		if (!$mail->send()) {
+			echo '<script>alert("Mailer Error: ' . $mail->ErrorInfo . '");</script>';
+		} else {
+			echo '<script>alert("El formulario se ha enviado correctamente.");</script>';
+		}
+
 
     } catch (Exception $e) {
-
+    echo "<script>alert('No se pudo enviar el correo. Error: " . $mail->ErrorInfo . "');</script>";
     }
 }
 
