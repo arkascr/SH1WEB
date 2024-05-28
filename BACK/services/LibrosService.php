@@ -98,4 +98,67 @@ class Libros
 		// Devuelve los resultados
 		return $result;
 	}
-}
+	
+	public function getLibrosbyIdCategoria(int $idCategoria)
+	{
+		// Prepara la consulta SQL con marcadores de posición
+		if($idCategoria == 0){
+			$stmt = $this->dbLibros->prepare("SELECT * FROM `t_libros` t INNER JOIN t_categorias c ON c.id_categoria = t.idCategoria WHERE idCategoria");
+		}else{
+			$stmt = $this->dbLibros->prepare("SELECT * FROM `t_libros` t INNER JOIN t_categorias c ON c.id_categoria = t.idCategoria WHERE idCategoria = :categoria ");
+			// Asigna el valor directamente al marcador de posición
+			$stmt->bindParam(1, $idCategoria, PDO::PARAM_STR);
+		}
+
+		
+
+		try {
+
+			// Ejecuta la consulta
+			$stmt->execute();
+		} catch (PDOException $e) {
+			die("Error al ejecutar la consulta: " . $e->getMessage());
+		}
+		// Verifica si la consulta fue exitosa
+		if ($stmt === false) {
+			// Maneja el error aquí
+			die("Error en la consulta: ");
+		}
+
+		// Obtén los resultados como un array asociativo
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		// Cierra la conexión a la base de datos
+		Database::close($this->dbLibros);
+
+		// Devuelve los resultados
+		return $result;
+	}
+
+	public function getCategorias()
+		{
+			$stmt = $this->dbLibros->prepare("SELECT * FROM `t_categorias`");
+			try {
+
+				// Ejecuta la consulta
+				$stmt->execute();
+			} catch (PDOException $e) {
+				die("Error al ejecutar la consulta: " . $e->getMessage());
+			}
+			// Verifica si la consulta fue exitosa
+			if ($stmt === false) {
+				// Maneja el error aquí
+				die("Error en la consulta: ");
+			}
+
+			// Obtén los resultados como un array asociativo
+			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+			// Cierra la conexión a la base de datos
+			Database::close($this->dbLibros);
+
+			// Devuelve los resultados
+			return $result;
+		}
+
+	}

@@ -3,6 +3,9 @@ session_start();
 
 require_once('../BACK/services/LibrosService.php');
 
+$libros = new Libros();
+$rCategorias = $libros->getCategorias();
+
 ?>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
@@ -105,7 +108,21 @@ require_once('../BACK/services/LibrosService.php');
     <section>
         <div class="container py-5">
             <div class="mx-auto" style="max-width: 900px;">
-                <div class="row d-flex justify-content-center">
+				<div class="row d-flex justify-content-center">
+					<div class="col-12 mb-4"><h2>Filtrar por categorías</h2></div>
+                    <!-- Selector de categorías -->
+                    <div class="col-12 mb-4">
+                        <select id="categoria-selector" class="form-control">
+							<option value="0" selected>Todos</option>
+                          <?php foreach ($rCategorias as $categoria): ?>
+                                <option value="<?= htmlspecialchars($categoria['id_categoria']) ?>">
+                                    <?= htmlspecialchars($categoria['genero']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center" id="tarjetas-contenedor">
                     <?php
                     $libros = new Libros();
                     $result = $libros->getLibros();
@@ -197,6 +214,7 @@ require_once('../BACK/services/LibrosService.php');
         <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
         <div class="elfsight-app-dcf5070e-9310-4dfd-8b34-957d71456614" data-elfsight-app-lazy></div>
     </div>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/bold-and-bright.js"></script>
@@ -204,6 +222,39 @@ require_once('../BACK/services/LibrosService.php');
     <script src="assets/js/js/baguetteBox.min.js"></script>
     <script src="assets/js/js/vanilla-zoom.js"></script>
     <script src="assets/js/js/theme.js"></script>
+	<script>
+        $(document).ready(function(){
+            // Función para cargar las tarjetas basadas en la categoría seleccionada
+            function cargarTarjetas(categoria) {
+                $.ajax({
+                    url: 'obtener_libros.php',
+                    type: 'GET',
+                    data: { categoria: categoria },
+                    success: function(response) {
+                        $('#tarjetas-contenedor').html(response);
+                    }
+                });
+            }
+
+            // Cargar tarjetas de la categoría seleccionada inicialmente
+            var categoriaInicial = $('#categoria-selector').val();
+            cargarTarjetas(0);
+
+            // Cambiar tarjetas cuando se seleccione una nueva categoría
+            $('#categoria-selector').change(function() {
+                var categoriaSeleccionada = $(this).val();
+                cargarTarjetas(categoriaSeleccionada);
+            });
+			
+			// Manejar la selección de "todos"
+			$('#categoria-selector').change(function() {
+				var categoriaSeleccionada = $(this).val();
+				if (categoriaSeleccionada === '0') {
+					cargarTarjetas('0');
+				}
+			});
+				});
+    </script>
     </>
 
 </html>
